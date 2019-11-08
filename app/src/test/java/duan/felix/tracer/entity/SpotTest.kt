@@ -1,27 +1,32 @@
 package duan.felix.tracer.entity
 
-import android.location.Location
+import org.hamcrest.CoreMatchers.equalTo
+import org.junit.Assert.assertThat
 import org.junit.Test
 import java.util.*
 
 class SpotTest {
 
-  var location = Location("")
-  val spot = Spot(Calendar.getInstance(), Location("fake"))
+  val calendar = Calendar.getInstance()
+  val spot = Spot(calendar, 50.0, 90.0)
 
   @Test
   fun testToString() {
-    TODO("fail, should make platform inrelative")
-    this.location.latitude = 100.0
-    this.location.longitude = 50.0
     print(spot)
   }
 
   @Test
   fun getCalendar() {
+    assertThat(spot.calendar, equalTo(calendar))
   }
 
   @Test
-  fun getLocation() {
+  fun getLongitude() {
+    assertThat(spot.longitude, equalTo(50.0))
+  }
+
+  @Test
+  fun getLatitude() {
+    assertThat(spot.latitude, equalTo(90.0))
   }
 }

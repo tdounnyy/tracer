@@ -1,15 +1,17 @@
 package duan.felix.tracer.entity
 
-import android.location.Location
 import java.util.*
 
-class Spot(val calendar: Calendar,
-           val location: Location) {
+class Spot(
+  val calendar: Calendar,
+  val longitude: Double,
+  val latitude: Double
+) {
   override fun toString(): String = StringBuilder("Spot:")
     .apply {
       append("[")
-      append(" (${location.longitude}, ${location.latitude})")
-      append(" @${calendar}")
+      append(" (${longitude}, ${latitude})")
+      append(" @${calendar.time}")
       append("]")
     }
     .toString()
