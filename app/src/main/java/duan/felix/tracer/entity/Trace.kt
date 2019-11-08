@@ -8,11 +8,19 @@ class Trace {
 
   fun addAll(c: List<Spot>): Boolean = spots.addAll(c)
 
+  fun getSpotCount(): Int = spots.size
+
   fun sort() {
-    TODO("sort spot by calendar")
+    spots.sortWith(compareBy { it.calendar })
   }
 
-  override fun toString(): String = StringBuilder("Trace:")
+  fun getSpot(i: Int): Spot? = if (spots.isEmpty()) {
+    null
+  } else {
+    spots[i]
+  }
+
+  override fun toString(): String = StringBuilder("Trace:\n")
     .apply {
       spots.forEachIndexed { index, spot ->
         this.append("#$index ").append("$spot").append("\n")
