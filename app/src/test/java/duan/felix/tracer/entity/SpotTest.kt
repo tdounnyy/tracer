@@ -22,11 +22,11 @@ class SpotTest {
 
   @Test
   fun getLongitude() {
-    assertThat(spot.longitude, equalTo(50.0))
+    assertThat(spot.longitude, equalTo(90.0))
   }
 
   @Test
   fun getLatitude() {
-    assertThat(spot.latitude, equalTo(90.0))
+    assertThat(spot.latitude, equalTo(50.0))
   }
 }
