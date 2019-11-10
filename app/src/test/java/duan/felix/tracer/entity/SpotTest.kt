@@ -1,7 +1,6 @@
 package duan.felix.tracer.entity
 
-import org.hamcrest.CoreMatchers.equalTo
-import org.junit.Assert.assertThat
+import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 import java.util.*
 
@@ -17,16 +16,16 @@ class SpotTest {
 
   @Test
   fun getCalendar() {
-    assertThat(spot.calendar, equalTo(calendar))
+    assertThat(spot.calendar).isEqualTo(calendar)
   }
 
   @Test
   fun getLongitude() {
-    assertThat(spot.longitude, equalTo(90.0))
+    assertThat(spot.longitude).isEqualTo(90.0)
   }
 
   @Test
   fun getLatitude() {
-    assertThat(spot.latitude, equalTo(50.0))
+    assertThat(spot.latitude).isEqualTo(50.0)
   }
 }

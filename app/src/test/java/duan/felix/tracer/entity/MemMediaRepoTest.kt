@@ -1,7 +1,6 @@
 package duan.felix.tracer.entity
 
-import org.hamcrest.CoreMatchers.*
-import org.junit.Assert.assertThat
+import com.google.common.truth.Truth.assertThat
 import org.junit.Before
 import org.junit.Test
 
@@ -21,9 +20,9 @@ class MemMediaRepoTest {
 
   @Test
   fun getSize() {
-    assertThat(MemMediaRepo.getSize(), equalTo(0))
+    assertThat(MemMediaRepo.getSize()).isEqualTo(0)
     MemMediaRepo.addMedia(media1)
-    assertThat(MemMediaRepo.getSize(), equalTo(1))
+    assertThat(MemMediaRepo.getSize()).isEqualTo(1)
   }
 
   @Test
@@ -32,17 +31,17 @@ class MemMediaRepoTest {
     MemMediaRepo.addMedia(media2)
     MemMediaRepo.addMedia(media1)
     val all = MemMediaRepo.getAll()
-    assertThat(all.size, equalTo(2))
-    assertThat(all[0], equalTo(media1))
-    assertThat(all[1], equalTo(media2))
+    assertThat(all.size).isEqualTo(2)
+    assertThat(all[0]).isEqualTo(media1)
+    assertThat(all[1]).isEqualTo(media2)
   }
 
   @Test
   fun addMedia() {
     MemMediaRepo.addMedia(media1)
-    assertThat(MemMediaRepo.getSize(), equalTo(1))
+    assertThat(MemMediaRepo.getSize()).isEqualTo(1)
     MemMediaRepo.addMedia(media1)
-    assertThat(MemMediaRepo.getSize(), equalTo(1))
+    assertThat(MemMediaRepo.getSize()).isEqualTo(1)
   }
 
   @Test
@@ -50,7 +49,7 @@ class MemMediaRepoTest {
     MemMediaRepo.addMedia(media1)
     MemMediaRepo.addMedia(media2)
     val media = MemMediaRepo.getMedia(media1.url)
-    assertThat(media, equalTo(media1))
+    assertThat(media).isEqualTo(media1)
   }
 
   @Test
@@ -59,10 +58,9 @@ class MemMediaRepoTest {
     MemMediaRepo.addMedia(media2)
     MemMediaRepo.addMedia(media3)
     val result = MemMediaRepo.getMediaList(listOf(media1.url, media2.url))
-    assertThat(result.size, equalTo(2))
-    assertThat(result, hasItem(media1))
-    assertThat(result, hasItem(media2))
-    assertThat(result, not(hasItem(media3)))
+    assertThat(result.size).isEqualTo(2)
+    assertThat(result).containsExactly(media1, media2)
+    assertThat(result).doesNotContain(media3)
   }
 
   @Test
@@ -70,8 +68,8 @@ class MemMediaRepoTest {
     MemMediaRepo.addMedia(media1)
     MemMediaRepo.addMedia(media2)
     MemMediaRepo.addMedia(media3)
-    assertThat(MemMediaRepo.getSize(), not(equalTo(0)))
+    assertThat(MemMediaRepo.getSize()).isNotEqualTo(0)
     MemMediaRepo.clear()
-    assertThat(MemMediaRepo.getSize(), equalTo(0))
+    assertThat(MemMediaRepo.getSize()).isEqualTo(0)
   }
 }

@@ -1,7 +1,6 @@
 package duan.felix.tracer.entity
 
-import org.hamcrest.CoreMatchers.equalTo
-import org.hamcrest.MatcherAssert.assertThat
+import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 import java.util.*
 
@@ -18,16 +17,16 @@ class TraceTest {
 
   @Test
   fun add() {
-    assertThat(trace.getSpotCount(), equalTo(0))
+    assertThat(trace.getSpotCount()).isEqualTo(0)
     trace.add(spot1)
-    assertThat(trace.getSpotCount(), equalTo(1))
+    assertThat(trace.getSpotCount()).isEqualTo(1)
   }
 
   @Test
   fun addAll() {
-    assertThat(trace.getSpotCount(), equalTo(0))
+    assertThat(trace.getSpotCount()).isEqualTo(0)
     trace.addAll(listOf(spot1, spot2))
-    assertThat(trace.getSpotCount(), equalTo(2))
+    assertThat(trace.getSpotCount()).isEqualTo(2)
   }
 
   @Test
@@ -35,8 +34,8 @@ class TraceTest {
     trace.add(spot1)
     trace.add(spot2)
     trace.sort()
-    assertThat(trace.getSpot(0), equalTo(spot1))
-    assertThat(trace.getSpot(1), equalTo(spot2))
+    assertThat(trace.getSpot(0)).isEqualTo(spot1)
+    assertThat(trace.getSpot(1)).isEqualTo(spot2)
   }
 
   @Test
@@ -44,8 +43,8 @@ class TraceTest {
     trace.add(spot2)
     trace.add(spot1)
     trace.sort()
-    assertThat(trace.getSpot(0), equalTo(spot1))
-    assertThat(trace.getSpot(1), equalTo(spot2))
+    assertThat(trace.getSpot(0)).isEqualTo(spot1)
+    assertThat(trace.getSpot(1)).isEqualTo(spot2)
   }
 
   @Test

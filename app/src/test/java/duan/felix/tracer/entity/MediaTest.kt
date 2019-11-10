@@ -1,6 +1,6 @@
 package duan.felix.tracer.entity
 
-import junit.framework.Assert.assertEquals
+import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
 class MediaTest {
@@ -9,12 +9,12 @@ class MediaTest {
 
   @Test
   fun getUrl() {
-    assertEquals("file://a_bravo_photo", media.url)
+    assertThat(media.url).isEqualTo("file://a_bravo_photo")
   }
 
   @Test
   fun getMediaType() {
-    assertEquals(MediaType.Image, media.mediaType)
+    assertThat(media.mediaType).isEqualTo(MediaType.Image)
   }
 
   @Test
