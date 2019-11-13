@@ -6,7 +6,7 @@ class Trace {
 
   fun add(spot: Spot): Boolean = spots.add(spot)
 
-  fun addAll(c: List<Spot>): Boolean = spots.addAll(c)
+  fun addAll(spots: List<Spot>): Boolean = this.spots.addAll(spots)
 
   fun getSpotCount(): Int = spots.size
 
