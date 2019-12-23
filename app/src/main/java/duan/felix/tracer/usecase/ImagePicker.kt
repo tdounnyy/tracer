@@ -1,14 +1,14 @@
 package duan.felix.tracer.usecase
 
-import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import duan.felix.tracer.entity.Media
 import duan.felix.tracer.entity.MediaType
+import duan.felix.tracer.ui.PickImageFragment
 
-class ImagePicker(val activity: Activity, val requestCode: Int) : MediaPicker {
+class ImagePicker(val fragment: PickImageFragment, val requestCode: Int) : MediaPicker {
   override fun pickMedia() {
-    with(activity) {
+    with(fragment) {
       val intent = Intent(Intent.ACTION_GET_CONTENT)
         .apply {
           type = "image/*"
