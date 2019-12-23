@@ -27,9 +27,13 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
-    PermissionUtils.assureExternalStoragePermission(this)
+    PermissionUtils.assurePermissions(this)
     findViewById<Button>(R.id.btn_pick).setOnClickListener {
       imagePicker.pickMedia()
+    }
+    findViewById<Button>(R.id.btn_map).setOnClickListener {
+      val intent = Intent(it.context, SampleMapActivity::class.java)
+      startActivity(intent)
     }
   }
 
