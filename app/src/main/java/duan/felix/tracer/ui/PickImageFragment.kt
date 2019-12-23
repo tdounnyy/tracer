@@ -15,6 +15,8 @@ import duan.felix.tracer.entity.Spot
 import duan.felix.tracer.usecase.ImagePicker
 import duan.felix.tracer.usecase.SpotBuilder
 import duan.felix.tracer.usecase.TraceBuilder
+import util.Event
+import util.RxBus
 
 class PickImageFragment : Fragment() {
 
@@ -52,6 +54,7 @@ class PickImageFragment : Fragment() {
     parseMedia2Spots(medias, spots)
     traceBuilder.buildTrace(spots)?.let {
       Log.d(TAG, "Trace is built: $it")
+      RxBus.publish(Event.TRACE, it)
     }
   }
 
