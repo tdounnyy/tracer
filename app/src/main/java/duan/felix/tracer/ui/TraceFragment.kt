@@ -9,8 +9,10 @@ import com.google.android.gms.maps.SupportMapFragment
 import duan.felix.tracer.entity.Trace
 import duan.felix.tracer.presentation.ISpotPresenter
 import duan.felix.tracer.presentation.SpotClusterPresenter
+import duan.felix.tracer.presentation.TracePresenter
 
 class TraceFragment : SupportMapFragment(), OnMapReadyCallback {
+  private var tracePresenter: TracePresenter? = null
   private var spotPresenter: ISpotPresenter? = null
   private var trace: Trace? = null
   private var mMap: GoogleMap? = null
@@ -30,6 +32,7 @@ class TraceFragment : SupportMapFragment(), OnMapReadyCallback {
     map?.let {
       mMap = map
       showSpots(map)
+      showLines(map)
     }
   }
 
@@ -38,8 +41,19 @@ class TraceFragment : SupportMapFragment(), OnMapReadyCallback {
       spotPresenter = SpotClusterPresenter(context!!, map)
       // presenter = SpotSimplePresenter(map)
     }
-    spotPresenter.run {
-      trace?.getAllSpot()?.let { this?.addSpots(it) }
+    spotPresenter?.run {
+      trace?.getAllSpot()?.let { this.addSpots(it) }
+    }
+  }
+
+  private fun showLines(map: GoogleMap) {
+    if (tracePresenter == null) {
+      tracePresenter = TracePresenter(context!!, map)
+    }
+    tracePresenter?.run {
+      trace?.let {
+        drawTrace(it)
+      }
     }
   }
 
