@@ -4,30 +4,38 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import duan.felix.tracer.R
+import androidx.fragment.app.FragmentManager
 import duan.felix.tracer.entity.Trace
 import io.reactivex.disposables.Disposable
 import util.Event
 import util.PermissionUtils
 import util.RxBus
 
+
 /**
  * @author duanyufei@dayuwuxian.com at 2019/11/13
  */
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), FragmentManager.OnBackStackChangedListener {
 
   private var subscription: Disposable? = null
   private var fragment: Fragment? = null
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
+    setContentView(duan.felix.tracer.R.layout.activity_main)
+
+    setSupportActionBar(findViewById(duan.felix.tracer.R.id.my_toolbar))
+    supportFragmentManager.addOnBackStackChangedListener(this)
+    shouldDisplayHomeUp()
+
     PermissionUtils.assurePermissions(this)
 
     if (fragment == null) {
       fragment = PickImageFragment().also {
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_main, it)
-          .commitAllowingStateLoss()
+        supportFragmentManager
+          .beginTransaction()
+          .replace(duan.felix.tracer.R.id.fragment_main, it)
+          .commit()
       }
     }
 
@@ -44,9 +52,27 @@ class MainActivity : AppCompatActivity() {
       args.putParcelable(TraceFragment.ARG_TRACE, trace)
       arguments = args
     }.also {
-      supportFragmentManager.beginTransaction().replace(R.id.fragment_main, it)
-        .commitAllowingStateLoss()
+      supportFragmentManager
+        .beginTransaction()
+        .replace(duan.felix.tracer.R.id.fragment_main, it)
+        .addToBackStack("pick")
+        .commit()
     }
+  }
+
+  override fun onBackStackChanged() {
+    shouldDisplayHomeUp()
+  }
+
+  private fun shouldDisplayHomeUp() {
+    //Enable Up button only  if there are entries in the back stack
+    val canGoBack = supportFragmentManager.backStackEntryCount > 0
+    supportActionBar!!.setDisplayHomeAsUpEnabled(canGoBack)
+  }
+
+  override fun onSupportNavigateUp(): Boolean {
+    supportFragmentManager.popBackStack()
+    return true
   }
 
   override fun onDestroy() {
