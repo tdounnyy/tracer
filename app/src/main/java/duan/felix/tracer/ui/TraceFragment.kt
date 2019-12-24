@@ -3,13 +3,17 @@ package duan.felix.tracer.ui
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import duan.felix.tracer.entity.Trace
 import duan.felix.tracer.presentation.ISpotPresenter
 import duan.felix.tracer.presentation.SpotClusterPresenter
 import duan.felix.tracer.presentation.TracePresenter
+import util.Consts
 
 class TraceFragment : SupportMapFragment(), OnMapReadyCallback {
   private var tracePresenter: TracePresenter? = null
@@ -33,6 +37,11 @@ class TraceFragment : SupportMapFragment(), OnMapReadyCallback {
       mMap = map
       showSpots(map)
       showLines(map)
+      val builder = LatLngBounds.Builder()
+      trace?.getAllSpot()?.forEach {
+        builder.include(LatLng(it.latitude, it.longitude))
+      }
+      map.moveCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), Consts.CAMERA_PADDING))
     }
   }
 

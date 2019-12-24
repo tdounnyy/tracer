@@ -13,6 +13,8 @@ class Trace() : Parcelable {
 
   fun getSpotCount(): Int = spots.size
 
+  fun isEmpty(): Boolean = spots.isEmpty()
+
   fun sort() {
     spots.sortWith(compareBy { it.calendar })
   }
