@@ -10,7 +10,9 @@ class SpotClusterPresenter(context: Context, map: GoogleMap) : ISpotPresenter {
   private var mClusterItemManager: ClusterManager<SpotClusterItem>? = null
 
   init {
-    mClusterItemManager = ClusterManager(context, map)
+    mClusterItemManager = ClusterManager<SpotClusterItem>(context, map).apply {
+      renderer = SpotThumbnailRenderer(context, map, this)
+    }
     map.setOnCameraIdleListener(mClusterItemManager)
     map.setOnMarkerClickListener(mClusterItemManager)
   }
