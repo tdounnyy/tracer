@@ -23,6 +23,10 @@ class Trace() : Parcelable {
     spots[i]
   }
 
+  fun getAllSpot(): MutableList<Spot> {
+    return spots
+  }
+
   override fun toString(): String = StringBuilder("Trace:\n")
     .apply {
       spots.forEachIndexed { index, spot ->
