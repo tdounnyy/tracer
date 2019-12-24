@@ -2,6 +2,8 @@ package duan.felix.tracer.entity
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.bumptech.glide.Glide
+import duan.felix.tracer.app.TracerApp
 import java.util.*
 
 data class Spot(
@@ -10,6 +12,11 @@ data class Spot(
   val longitude: Double,
   val url: String
 ) : Parcelable {
+
+  fun preload() {
+    Glide.with(TracerApp.appContext).load(url).preload()
+  }
+
   override fun toString(): String = StringBuilder("Spot:")
     .apply {
       append("[")
@@ -25,8 +32,7 @@ data class Spot(
     parcel.readDouble(),
     parcel.readDouble(),
     parcel.readString()!!
-  ) {
-  }
+  )
 
   override fun writeToParcel(parcel: Parcel, flags: Int) {
     parcel.writeLong(calendar.timeInMillis)

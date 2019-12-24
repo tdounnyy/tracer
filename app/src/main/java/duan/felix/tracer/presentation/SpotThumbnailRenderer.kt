@@ -45,6 +45,6 @@ class SpotThumbnailRenderer(
     markerOptions: MarkerOptions?
   ) {
     val icon = mClusterIconGenerator.makeIcon()
-    markerOptions?.icon(BitmapDescriptorFactory.fromBitmap(icon))?.title("Icon")
+    markerOptions?.icon(BitmapDescriptorFactory.fromBitmap(icon))?.title("Cluster")
   }
 }
