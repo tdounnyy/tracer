@@ -7,7 +7,7 @@ import java.util.*
 class SpotTest {
 
   val calendar = Calendar.getInstance()
-  val spot = Spot(calendar, 50.0, 90.0)
+  val spot = Spot(calendar, 50.0, 90.0, "http://")
 
   @Test
   fun testToString() {

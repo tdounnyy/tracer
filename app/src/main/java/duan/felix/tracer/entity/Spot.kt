@@ -7,13 +7,15 @@ import java.util.*
 data class Spot(
   val calendar: Calendar,
   val latitude: Double,
-  val longitude: Double
+  val longitude: Double,
+  val url: String
 ) : Parcelable {
   override fun toString(): String = StringBuilder("Spot:")
     .apply {
       append("[")
       append(" (${latitude}, ${longitude})")
       append(" @${calendar.time}")
+      append(" =${url}")
       append("]")
     }
     .toString()
@@ -21,7 +23,8 @@ data class Spot(
   constructor(parcel: Parcel) : this(
     Calendar.getInstance().apply { timeInMillis = parcel.readLong() },
     parcel.readDouble(),
-    parcel.readDouble()
+    parcel.readDouble(),
+    parcel.readString()!!
   ) {
   }
 
@@ -29,6 +32,7 @@ data class Spot(
     parcel.writeLong(calendar.timeInMillis)
     parcel.writeDouble(latitude)
     parcel.writeDouble(longitude)
+    parcel.writeString(url)
   }
 
   override fun describeContents(): Int {

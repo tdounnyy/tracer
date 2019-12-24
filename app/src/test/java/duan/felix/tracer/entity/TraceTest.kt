@@ -12,8 +12,8 @@ class TraceTest {
   val trace = Trace()
   val calendar1 = Calendar.Builder().setDate(100, 3, 1).build()
   val calendar2 = Calendar.Builder().setDate(100, 3, 2).build()
-  val spot1 = Spot(calendar1, 100.0, 30.0)
-  val spot2 = Spot(calendar2, 100.0, 30.0)
+  val spot1 = Spot(calendar1, 100.0, 30.0, "http://")
+  val spot2 = Spot(calendar2, 100.0, 30.0, "http://")
 
   @Test
   fun add() {

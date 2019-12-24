@@ -18,7 +18,7 @@ class SpotBuilder {
     val calendar = MediaUtils.getRandomCalendar(media)
     val latitude = MediaUtils.getRandomLatitude(media)
     val longitude = MediaUtils.getRandomLongitude(media)
-    return Spot(calendar, latitude, longitude)
+    return Spot(calendar, latitude, longitude, media.url)
   }
 
   fun emit(media: Media): Spot? {
@@ -42,7 +42,7 @@ class SpotBuilder {
     val cal = Calendar.getInstance().apply {
       time = SimpleDateFormat("yyyy:MM:dd HH:mm:ss").parse(datetime)
     }
-    return Spot(cal, latlong[0], latlong[1])
+    return Spot(cal, latlong[0], latlong[1], media.url)
   }
 
   companion object {
