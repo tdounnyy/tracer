@@ -9,9 +9,9 @@ import org.junit.Test
  */
 class MemMediaRepoTest {
 
-  val media1 = Media("file://media1", MediaType.Image)
-  val media2 = Media("file://media2", MediaType.Image)
-  val media3 = Media("file://media3", MediaType.Image)
+  val media1 = Media("file://media1", MediaType.Image, 0.0, 0.0, "title")
+  val media2 = Media("file://media2", MediaType.Image, 0.0, 0.0, "title")
+  val media3 = Media("file://media3", MediaType.Image, 0.0, 0.0, "title")
 
   @Before
   fun setup() {

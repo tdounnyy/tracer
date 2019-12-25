@@ -19,6 +19,6 @@ object MockMediaPicker : MediaPicker {
   }
 
   override fun onMediaPicked(urls: List<Uri>): List<Media> {
-    return listOf(Media("file://mocked_media", MediaType.Image))
+    return listOf(Media("file://mocked_media", MediaType.Image, 0.0, 0.0, "title"))
   }
 }

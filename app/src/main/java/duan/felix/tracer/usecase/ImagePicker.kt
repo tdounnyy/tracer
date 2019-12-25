@@ -35,7 +35,7 @@ class ImagePicker(val fragment: PickImageFragment, val requestCode: Int) : Media
   override fun onMediaPicked(urls: List<Uri>): List<Media> {
     val list = mutableListOf<Media>()
     for (url in urls) {
-      list.add(Media(url.toString(), MediaType.Image))
+      list.add(Media(url.toString(), MediaType.Image, 0.0, 0.0, "title"))
     }
     return list
   }

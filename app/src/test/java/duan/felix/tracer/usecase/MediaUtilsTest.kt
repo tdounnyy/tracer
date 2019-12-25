@@ -9,7 +9,7 @@ import org.junit.Test
  */
 class MediaUtilsTest {
 
-  val media = Media("file://media", MediaType.Image)
+  val media = Media("file://media", MediaType.Image, 0.0, 0.0, "title")
   @Test
   fun getRandomCalendar() {
     println(MediaUtils.getRandomCalendar(media).time)
