@@ -7,7 +7,7 @@ import duan.felix.tracer.entity.MediaType
 
 class ImageResolver {
 
-  fun getImages(context: Context): List<Media> {
+  fun fetchImages(context: Context): List<Media> {
     val images = mutableListOf<Media>()
 
     val projection = arrayOf(
