@@ -9,8 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import duan.felix.tracer.R
 import duan.felix.tracer.ui.gallery.presenter.GalleryPresenter
 
-// TODO: make gridview for images
-// TODO: load images into gridview
 // TODO: make selectable
 // TODO: make drag selectable
 // TODO: implement MediaPicker
