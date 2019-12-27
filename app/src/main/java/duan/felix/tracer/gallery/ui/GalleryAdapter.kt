@@ -1,6 +1,7 @@
 package duan.felix.tracer.gallery.ui
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,16 +32,24 @@ class GalleryAdapter(context: Context) : RecyclerView.Adapter<GalleryItemHolder>
 
   override fun onBindViewHolder(holder: GalleryItemHolder, position: Int) {
     images?.let {
-      holder.bind(it[position])
+      holder.bind(it[position], position)
     }
   }
 }
 
 class GalleryItemHolder(private val galleryItem: View) :
   RecyclerView.ViewHolder(galleryItem) {
-  fun bind(media: Media) {
+
+  private var index: Int = -1
+  private val onClickListener = View.OnClickListener {
+    Log.d("felixx", "click on index:$index, $this")
+  }
+
+  fun bind(media: Media, position: Int) {
+    index = position
     Glide.with(itemView.context).load(media.url)
       .placeholder(android.R.drawable.stat_notify_sync_noanim).into(galleryItem.image)
     galleryItem.title.text = media.title
+    itemView.setOnClickListener(onClickListener)
   }
 }
