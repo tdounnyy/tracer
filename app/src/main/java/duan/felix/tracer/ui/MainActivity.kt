@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import duan.felix.tracer.entity.Trace
+import duan.felix.tracer.ui.gallery.GalleryFragment
 import io.reactivex.disposables.Disposable
 import util.Event
 import util.PermissionUtils
@@ -31,7 +32,7 @@ class MainActivity : AppCompatActivity(), FragmentManager.OnBackStackChangedList
     PermissionUtils.assurePermissions(this)
 
     if (fragment == null) {
-      fragment = PickImageFragment().also {
+      fragment = GalleryFragment().also {
         supportFragmentManager
           .beginTransaction()
           .replace(duan.felix.tracer.R.id.fragment_main, it)
