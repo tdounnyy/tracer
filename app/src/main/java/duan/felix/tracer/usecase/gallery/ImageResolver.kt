@@ -5,9 +5,9 @@ import android.provider.MediaStore
 import duan.felix.tracer.entity.Media
 import duan.felix.tracer.entity.MediaType
 
-class ImageResolver(val context: Context) {
+class ImageResolver {
 
-  fun getImages(): List<Media> {
+  fun getImages(context: Context): List<Media> {
     val images = mutableListOf<Media>()
 
     val projection = arrayOf(
