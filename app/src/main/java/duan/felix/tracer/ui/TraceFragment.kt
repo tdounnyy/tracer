@@ -10,9 +10,9 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import duan.felix.tracer.entity.Trace
-import duan.felix.tracer.presentation.ISpotPresenter
-import duan.felix.tracer.presentation.SpotClusterPresenter
-import duan.felix.tracer.presentation.TracePresenter
+import duan.felix.tracer.presenter.ISpotPresenter
+import duan.felix.tracer.presenter.SpotClusterPresenter
+import duan.felix.tracer.presenter.TracePresenter
 import util.Consts
 
 class TraceFragment : SupportMapFragment(), OnMapReadyCallback {

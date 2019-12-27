@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import duan.felix.tracer.entity.Trace
-import duan.felix.tracer.ui.gallery.GalleryFragment
+import duan.felix.tracer.gallery.ui.GalleryFragment
 import io.reactivex.disposables.Disposable
 import util.Event
 import util.PermissionUtils

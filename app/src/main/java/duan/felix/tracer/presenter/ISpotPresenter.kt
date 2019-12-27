@@ -1,4 +1,4 @@
-package duan.felix.tracer.presentation
+package duan.felix.tracer.presenter
 
 import duan.felix.tracer.entity.Spot
 

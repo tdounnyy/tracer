@@ -1,4 +1,4 @@
-package duan.felix.tracer.ui.gallery
+package duan.felix.tracer.gallery.ui
 
 import android.content.Context
 import android.view.LayoutInflater
