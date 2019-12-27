@@ -16,9 +16,9 @@ class ImageResolver {
       MediaStore.Images.ImageColumns.LONGITUDE,
       MediaStore.Images.ImageColumns.TITLE
     )
+    val args = arrayOf("%DCIM/Camera%")
     val selection =
-      "${MediaStore.Images.ImageColumns.DATA} LIKE %?% AND ${MediaStore.Images.ImageColumns.LATITUDE} NOT NULL"
-    val args = arrayOf("DCIM/Camera")
+      "${MediaStore.Images.ImageColumns.DATA} LIKE ? AND ${MediaStore.Images.ImageColumns.LATITUDE} NOT NULL"
     val order = "${MediaStore.Images.ImageColumns.DATE_ADDED} DESC"
 
     context.contentResolver.query(
