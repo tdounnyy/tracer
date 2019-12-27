@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import duan.felix.tracer.R
@@ -51,11 +52,14 @@ class GalleryAdapter(context: Context) : RecyclerView.Adapter<GalleryItemHolder>
 class GallerySelection() {
   private val selected = mutableListOf<Int>()
 
-  fun toggleSelection(index: Int) {
+  fun toggleSelection(view: View, index: Int) {
     if (selected.contains(index)) {
       selected.remove(index)
+      // TODO: cast is BAD
+      (view as CardView).setCardBackgroundColor(view.context.resources.getColor(android.R.color.transparent))
     } else {
       selected.add(index)
+      (view as CardView).setCardBackgroundColor(view.context.resources.getColor(R.color.colorAccent))
     }
   }
 
@@ -77,7 +81,7 @@ class GalleryItemHolder(
   private var index: Int = -1
   private val onClickListener = View.OnClickListener {
     Log.d("felixx", "click on index:$index, $this")
-    selection.toggleSelection(index)
+    selection.toggleSelection(it, index)
   }
 
   fun bind(media: Media, position: Int) {
