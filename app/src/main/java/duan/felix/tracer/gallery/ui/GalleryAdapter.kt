@@ -16,14 +16,17 @@ class GalleryAdapter(context: Context) : RecyclerView.Adapter<GalleryItemHolder>
   var images: List<Media>? = null
     set(value) {
       field = value
+      selection.clear()
       notifyDataSetChanged()
     }
+
+  private var selection = GallerySelection()
 
   private val inflater: LayoutInflater = LayoutInflater.from(context)
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryItemHolder {
     val view = inflater.inflate(R.layout.widget_gallery_item, parent, false)
-    return GalleryItemHolder(view)
+    return GalleryItemHolder(view, selection)
   }
 
   override fun getItemCount(): Int {
@@ -35,14 +38,46 @@ class GalleryAdapter(context: Context) : RecyclerView.Adapter<GalleryItemHolder>
       holder.bind(it[position], position)
     }
   }
+
+  fun getSelection(): MutableList<Media> {
+    val list = mutableListOf<Media>()
+    images?.let {
+      selection.getAllSelection().forEach { index -> list.add(it[index]) }
+    }
+    return list
+  }
 }
 
-class GalleryItemHolder(private val galleryItem: View) :
+class GallerySelection() {
+  private val selected = mutableListOf<Int>()
+
+  fun toggleSelection(index: Int) {
+    if (selected.contains(index)) {
+      selected.remove(index)
+    } else {
+      selected.add(index)
+    }
+  }
+
+  fun getAllSelection(): List<Int> {
+    return selected.toList()
+  }
+
+  fun clear() {
+    selected.clear()
+  }
+}
+
+class GalleryItemHolder(
+  private val galleryItem: View,
+  selection: GallerySelection
+) :
   RecyclerView.ViewHolder(galleryItem) {
 
   private var index: Int = -1
   private val onClickListener = View.OnClickListener {
     Log.d("felixx", "click on index:$index, $this")
+    selection.toggleSelection(index)
   }
 
   fun bind(media: Media, position: Int) {

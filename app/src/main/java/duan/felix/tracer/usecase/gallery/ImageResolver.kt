@@ -1,9 +1,11 @@
 package duan.felix.tracer.usecase.gallery
 
 import android.content.Context
+import android.net.Uri
 import android.provider.MediaStore
 import duan.felix.tracer.entity.Media
 import duan.felix.tracer.entity.MediaType
+import java.io.File
 
 class ImageResolver {
 
@@ -30,7 +32,8 @@ class ImageResolver {
     )?.run {
       while (moveToNext()) {
         val image = Media(
-          getString(0),
+          // TODO: performance!
+          Uri.fromFile(File(getString(0))).toString(),
           MediaType.Image,
           getDouble(1),
           getDouble(2),

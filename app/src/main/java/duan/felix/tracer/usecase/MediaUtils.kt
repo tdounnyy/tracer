@@ -8,6 +8,9 @@ import android.util.Log
 import androidx.exifinterface.media.ExifInterface
 import androidx.exifinterface.media.ExifInterface.TAG_DATETIME_ORIGINAL
 import duan.felix.tracer.entity.Media
+import duan.felix.tracer.entity.Spot
+import util.Event
+import util.RxBus
 import java.io.FileNotFoundException
 import java.util.*
 
@@ -41,7 +44,7 @@ object MediaUtils {
 
   fun isValidMedia(context: Context, media: Media): Boolean =
     (getImageLatLong(context, Uri.parse(media.url)) != null
-        && getDatetime(context, Uri.parse(media.url)) != null).also {
+            && getDatetime(context, Uri.parse(media.url)) != null).also {
       if (!it) {
         Log.d(TAG, "Invalid media: ${media.url}")
       }
@@ -82,5 +85,19 @@ object MediaUtils {
 
   fun getRandomLatitude(media: Media): Double = Random().nextInt(180).run { this - 90.0 }
   fun getRandomLongitude(media: Media): Double = Random().nextInt(360).run { this - 180.0 }
+
+  fun sendToTarget(medias: List<Media>) {
+    val spots = mutableListOf<Spot>()
+    val traceBuilder = TraceBuilder()
+    val spotBuilder = SpotBuilder()
+    for (media in medias) {
+      spotBuilder.emit(media)?.let { spot ->
+        spots.add(spot)
+      }
+    }
+    traceBuilder.buildTrace(spots)?.let {
+      RxBus.publish(Event.TRACE, it)
+    }
+  }
 
 }
